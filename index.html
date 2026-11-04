@@ -24,6 +24,36 @@
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+  <!-- Автоматический поиск путей картинок для GitHub Pages (images/ vs public/images/) -->
+  <script>
+    window.addEventListener('error', function(event) {
+      if (event.target && event.target.tagName === 'IMG') {
+        var img = event.target;
+        var rawSrc = img.getAttribute('src') || '';
+        var fileName = rawSrc.split('/').pop();
+        if (!fileName) return;
+
+        var candidates = [
+          'images/' + fileName,
+          './images/' + fileName,
+          'public/images/' + fileName,
+          './public/images/' + fileName,
+          'public/assets/aistudio/' + fileName
+        ];
+
+        var tried = parseInt(img.dataset.retryIdx || '0', 10);
+        while (tried < candidates.length) {
+          var nextCandidate = candidates[tried++];
+          img.dataset.retryIdx = tried;
+          if (nextCandidate !== rawSrc && !img.src.endsWith(nextCandidate)) {
+            img.src = nextCandidate;
+            break;
+          }
+        }
+      }
+    }, true);
+  </script>
+
   <!-- Tailwind CSS via CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -282,7 +312,7 @@
   <!-- ========================================================================= -->
   <!-- 3. ФЛАГМАН: ЯПОНСКИЙ HEAD SPA (Аквамедитация) -->
   <!-- ========================================================================= -->
-  <section id="headspa" class="py-24 sm:py-32 relative bg-[#201610] overflow-hidden">
+  <section id="headspa" class="scroll-mt-24 py-24 sm:py-32 relative bg-[#201610] overflow-hidden">
     <!-- Фоновые элементы мягкого свечения -->
     <div class="absolute top-1/4 right-0 w-96 h-96 bg-[#cbb08f]/5 rounded-full blur-3xl pointer-events-none"></div>
     <div class="absolute bottom-10 left-0 w-80 h-80 bg-[#cbb08f]/5 rounded-full blur-3xl pointer-events-none"></div>
@@ -420,7 +450,7 @@
   <!-- ========================================================================= -->
   <!-- 4. ОФИЦИАЛЬНЫЙ ПРАЙС «УСЛУГИ ДЛЯ НЕЕ» (Строго по меню студии) -->
   <!-- ========================================================================= -->
-  <section id="rituals" class="py-24 sm:py-32 bg-[#251a13] relative border-y border-[#cbb08f]/15">
+  <section id="rituals" class="scroll-mt-24 py-24 sm:py-32 bg-[#251a13] relative border-y border-[#cbb08f]/15">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <!-- Заголовок прайса -->
@@ -740,7 +770,7 @@
   <!-- ========================================================================= -->
   <!-- 5. SPA ДЛЯ ДВОИХ И ДЕВИЧНИКИ (Романтические свидания и премиум-отдых) -->
   <!-- ========================================================================= -->
-  <section id="couples" class="py-24 sm:py-32 relative bg-[#201610] overflow-hidden">
+  <section id="couples" class="scroll-mt-24 py-24 sm:py-32 relative bg-[#201610] overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -850,7 +880,7 @@
   <!-- ========================================================================= -->
   <!-- 6. ФИЛОСОФИЯ И АТМОСФЕРА СТУДИИ (Галерея интерьера) -->
   <!-- ========================================================================= -->
-  <section id="about" class="py-24 sm:py-32 bg-[#251a13] border-t border-[#cbb08f]/15">
+  <section id="about" class="scroll-mt-24 py-24 sm:py-32 bg-[#251a13] border-t border-[#cbb08f]/15">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="text-center max-w-3xl mx-auto mb-16">
@@ -906,7 +936,7 @@
   <!-- ========================================================================= -->
   <!-- 7. ПОДАРОЧНЫЕ СЕРТИФИКАТЫ -->
   <!-- ========================================================================= -->
-  <section id="certificates" class="py-24 sm:py-32 relative bg-[#201610] border-t border-[#cbb08f]/15">
+  <section id="certificates" class="scroll-mt-24 py-24 sm:py-32 relative bg-[#201610] border-t border-[#cbb08f]/15">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="rounded-3xl bg-gradient-to-b from-[#2a1d16] to-[#201610] border border-[#cbb08f]/30 p-8 sm:p-14 relative overflow-hidden shadow-2xl">
@@ -1092,7 +1122,7 @@
   <!-- ========================================================================= -->
   <!-- 9. КОНТАКТЫ И АДРЕС -->
   <!-- ========================================================================= -->
-  <section id="contacts" class="py-24 sm:py-32 relative bg-[#201610] border-t border-[#cbb08f]/20">
+  <section id="contacts" class="scroll-mt-24 py-24 sm:py-32 relative bg-[#201610] border-t border-[#cbb08f]/20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
