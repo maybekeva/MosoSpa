@@ -1,0 +1,6 @@
+{
+  "name": "MOSO SPA Studio",
+  "description": "Премиальная студия релаксации в Нижнем Новгороде: японский Head SPA, кедровая бочка, авторские SPA-ритуалы и программы для двоих.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
